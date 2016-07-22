@@ -14,16 +14,20 @@ sockListen.listen(1)
 sockClient = socket(AF_INET,SOCK_STREAM)
 sockClient.connect(('127.0.0.1',1234))
                    
-                   
+def send2Server():
+    while True:
+        data = conectionTelnet.recv(1024)         
+        sockClient.send(b"Data from client to server "+data)
+    
+def send2Telnet():
+    while True:
+        dataFromServer = sockClient.recv(1024)
+        conectionTelnet.send(b"Data from client and server " + dataFromServer)
+
 while True:
     
     conectionTelnet, address = sockListen.accept() 
     
-    while True:
-        data = conectionTelnet.recv(1024)         
+    threading.Thread(target=send2Server).start()
+    threading.Thread(target=send2Telnet).start()
         
-        sockClient.send(b"Data from client to server "+data)
-        
-        dataFromServer = sockClient.recv(1024)
-        
-        conectionTelnet.send(b"Data from client and server " + dataFromServer)
