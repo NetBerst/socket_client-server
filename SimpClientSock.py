@@ -2,8 +2,8 @@ from socket import *
 import threading
 
 myHost = ''
-myPort = 1233
-portServ =1234 
+myPort = 10000
+portServ =10001 
 
 sockListen = socket(AF_INET,SOCK_STREAM)
 sockListen.setsockopt(SOL_SOCKET, SO_REUSEADDR, 1)
@@ -12,7 +12,7 @@ sockListen.bind((myHost,myPort))
 sockListen.listen(1)
 
 sockClient = socket(AF_INET,SOCK_STREAM)
-sockClient.connect(('127.0.0.1',1234))
+sockClient.connect(('127.0.0.1',portServ))
                    
 def send2Server():
     while True:

@@ -1,8 +1,8 @@
 from socket import *
 import threading
 myHost = ''
-myPort1 = 1234
-myPort2 = 1235
+myPort1 = 10001
+myPort2 = 10002
 port1 = socket(AF_INET, SOCK_STREAM)
 port1.setsockopt(SOL_SOCKET, SO_REUSEADDR, 1)
 port2 = socket(AF_INET, SOCK_STREAM)
